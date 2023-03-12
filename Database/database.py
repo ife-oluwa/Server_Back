@@ -4,11 +4,11 @@ from dotenv import dotenv_values
 
 
 
-DATAVASE_URI = dotenv_values('.env')["DATABASE_URL"]
+DATABASE_URI = dotenv_values('.env')["DATABASE_URL"]
 
 
 engine = create_engine(
-    DATAVASE_URI,
+    DATABASE_URI,
     echo=True
     )
 

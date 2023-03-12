@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import uvicorn
 from routers.admin import auth_router
 from routers.prediction_routes import predict_router
+from fastapi_jwt_auth import AuthJWT
+from schemas import Settings
 
 description = """
     ## This collection of API routes manage the backend services for the machine learning service.
@@ -28,6 +30,11 @@ app = FastAPI(
     version='0.0.1',
     openapi_tags=tags_metadata,
     openapi_url="/api/v1/openapi.json")
+
+@AuthJWT.load_config
+def get_config():
+    return Settings()
+
 
 
 app.include_router(auth_router)
